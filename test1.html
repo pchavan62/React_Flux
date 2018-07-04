@@ -1,0 +1,26 @@
+<form:form commandName="filter" action="applicatorStatisticsReport.html?newSearch=false">
+        <table align="center" cellpadding="0" cellspacing="0" class="reportTable">
+            <tr>
+                <td><bean:message key="APPLICATOR_STATISTICS_REPORT.LABEL.DATE_RANGE"/>&nbsp;</td>
+                <td><form:input path="dateRangeString" id="startDate" class="dateRange-pick" size="25" cssStyle="text-align:center;"/></td>
+                <td>&nbsp;<img id="calendarButton" src="../images/calendar-button.gif" alt="<bean:message key="APPLICATOR_STATISTICS_REPORT.ALT_TEXT.CALENDER"/>" />&nbsp;</td>
+                <td>&nbsp;&nbsp;<authz:authentication
+                        property="principal.primaryAssetDisplayNameSingular"/>(s):&nbsp;</td>
+                <td><form:select path="applicatorId">
+                    <form:option value="" label="${all}"/>
+                    <form:options items="${apps}" itemLabel="name" itemValue="id"/>
+                </form:select>&nbsp;&nbsp;
+                </td>
+                <td><input id="submit-filter" class ="submit-filter-applicator-statics" type="submit" value="<bean:message key="APPLICATOR_STATISTICS_REPORT.BUTTON.SEARCH"/>"/></td>
+                <c:if test="${rollup != null}">
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a id="csvExport" href="#" onclick="exportToExcel();"><bean:message key="APPLICATOR_STATISTICS_REPORT.LINK.EXPORT_TO_EXCEL"/></a>
+                    </td>
+                </c:if>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <form:errors path="dateRangeString" cssClass="error-text"/>
+                </td>
+            </tr>
+        </table>
+    </form:form>
